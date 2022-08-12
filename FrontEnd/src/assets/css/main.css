@@ -1,0 +1,29 @@
+.login-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-panel > form {
+    padding: 24px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00000066;
+}
+
+form .form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+form .form-group:last-child {
+    margin-bottom: 0px;
+}
+
+form .form-group label {
+    margin-right: 12px;
+}
