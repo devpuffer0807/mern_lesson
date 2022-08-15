@@ -15,22 +15,37 @@ export default function LoginPage(props) {
         setPassword(e.target.value);
     };
 
-    const userLogin = (e) => {
+    const userLogin = async (e) => {
         e.preventDefault();
-        if(username === "")
-            return alert("Please fill the user name")
-        if(password === "")
+
+        if(username === "") {
+            return alert("Please fill the user name");
+        }
+        if(password === "") {
             return alert("Please fill the password");
+        }
+
         setLoading(true);
-        setTimeout(() => {
+        if (loading) return;
+
+        fetch('http://localhost:5000/auth/login', {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username: username, password: password})
+        }).then((res) => {
+            alert("Login success");
+        }).catch((err) => {
+            alert("Login error");
+        }).finally(() => {
             setLoading(false);
-        }, 3000)
-        
+        });
     }
 
     return (
         <div>
-            { loading === true ? <Loading /> : null }
             <div className="login-panel">
                 <form>
                     <div className="form-group">
@@ -42,7 +57,7 @@ export default function LoginPage(props) {
                         <input type="password" onChange={handlePassword} value={password} />
                     </div>
                     <div className="form-group">
-                        <button onClick={userLogin}>Login</button>  
+                        <button onClick={userLogin}>{loading && <Loading/>}Login</button>  
                     </div>
                 </form>
             </div>
