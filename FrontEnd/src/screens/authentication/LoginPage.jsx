@@ -32,9 +32,10 @@ export default function LoginPage(props) {
             method: 'POST',
             headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
             },
-            body: JSON.stringify({username: username, password: password})
+            body: JSON.stringify({username: username, password: password}),
+            mode: "cors"
         }).then((res) => {
             alert("Login success");
         }).catch((err) => {
@@ -57,7 +58,7 @@ export default function LoginPage(props) {
                         <input type="password" onChange={handlePassword} value={password} />
                     </div>
                     <div className="form-group">
-                        <button onClick={userLogin}>{loading && <Loading/>}Login</button>  
+                        <button onClick={userLogin}>{loading ? <Loading/> : "Login"}</button>  
                     </div>
                 </form>
             </div>
