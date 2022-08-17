@@ -34,10 +34,11 @@ export default function LoginPage(props) {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             },
-            body: JSON.stringify({username: username, password: password}),
+            body: JSON.stringify({email: username, password: password}),
             mode: "cors"
-        }).then((res) => {
-            alert("Login success");
+        }).then(async (res) => {
+            const _res = await res.json();
+            alert(_res.status);
         }).catch((err) => {
             alert("Login error");
         }).finally(() => {

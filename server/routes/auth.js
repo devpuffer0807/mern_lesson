@@ -16,9 +16,16 @@ router.post("/login", validate({
         password
     } = req.body;
 
-    res.json({
+    if(email === "pufferdev@gmail.com"){
+        if(password === "123456"){
+            res.json({status: "success"});
+        }else{
+            res.json({status: "password_error"});
+        }
+    }else{
+        res.json({ status: 'email_error' });
+    }
 
-    });
 });
 
 module.exports = router;
